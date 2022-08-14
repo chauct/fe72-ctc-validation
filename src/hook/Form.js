@@ -2,6 +2,7 @@ import { Card, Input, Col, Row, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import isEmpty from "lodash.isempty";
+import styles from "./style.module.css";
 
 const userSchema = yup.object().shape({
   username: yup
@@ -11,7 +12,7 @@ const userSchema = yup.object().shape({
   phone: yup
     .string()
     .required("*Vui lòng nhập số điện thoại ")
-    .matches(/^[0-9]+$/g),
+    .matches(/^[0-9]+$/g, "* Số điện thoại không đúng định dạng"),
   email: yup
     .string()
     .required("*Vui lòng nhập Email")
@@ -99,7 +100,7 @@ function Form(props) {
               name="id"
               size="large"
             />
-            <span>{errors.id}</span>
+            <span className="danger">{errors.id}</span>
           </Col>
           <Col className="padding" span={12}>
             <label>Họ tên</label>
@@ -109,7 +110,7 @@ function Form(props) {
               name="username"
               size="large"
             />
-            <span>{errors.username}</span>
+            <span className="danger">{errors.username}</span>
           </Col>
         </Row>
         <Row>
@@ -121,7 +122,7 @@ function Form(props) {
               name="phone"
               size="large"
             />
-            <span>{errors.phone}</span>
+            <span className="danger">{errors.phone}</span>
           </Col>
           <Col className="padding" span={12}>
             <label>Email</label>
@@ -131,7 +132,7 @@ function Form(props) {
               name="email"
               size="large"
             />
-            <span>{errors.email}</span>
+            <span className="danger">{errors.email}</span>
           </Col>
         </Row>
         <div className="btn">
